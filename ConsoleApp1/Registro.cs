@@ -10,15 +10,14 @@ namespace ConsoleApp1
         public static List<SolicitudPersonalizada> DatosSolicitudes = new List<SolicitudPersonalizada>();
 
 
-        public class SolicitudPersonalizada
-        {
-            public string Nombre { get; set; }
-            public string Cedula { get; set; }
-            public string Telefono { get; set; }
-            public string Marca { get; set; }
-            public string Modelo { get; set; }
-            public int Año { get; set; }
-        }
+        public record SolicitudPersonalizada(
+            string Nombre,
+            string Cedula,
+            string Telefono,
+            string Marca,
+            string Modelo,
+            int Año
+         );
 
 
         public static List<VehiculoSegunda> InventarioSegunda = new List<VehiculoSegunda>();

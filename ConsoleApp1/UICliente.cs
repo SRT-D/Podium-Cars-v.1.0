@@ -221,15 +221,14 @@ public static class UICliente
         }
         else if (opcion == "3")
         {
-            SolicitudPersonalizada solicitud = new SolicitudPersonalizada();
-            Console.WriteLine("\n-- FORMULARIO DE IMPORTACION PERSONALIZADA --");
-            Console.Write("Nombre completo: "); solicitud.Nombre = Console.ReadLine();
-            Console.Write("Cedula: "); solicitud.Cedula = Console.ReadLine();
-            Console.Write("Telefono: "); solicitud.Telefono = Console.ReadLine();
-            Console.Write("Marca del vehiculo: "); solicitud.Marca = Console.ReadLine();
-            Console.Write("Modelo: "); solicitud.Modelo = Console.ReadLine();
-            Console.Write("Año: "); solicitud.Año = int.Parse(Console.ReadLine());
+            Console.Write("Nombre completo: "); string nombre = Console.ReadLine();
+            Console.Write("Cedula: "); string cedula = Console.ReadLine();
+            Console.Write("Telefono: "); string telefono = Console.ReadLine();
+            Console.Write("Marca del vehiculo: "); string marca = Console.ReadLine();
+            Console.Write("Modelo: "); string modelo = Console.ReadLine();
+            Console.Write("Año: "); int año = int.Parse(Console.ReadLine());
 
+            var solicitud = new SolicitudPersonalizada(nombre, cedula, telefono, marca, modelo, año);
             Registro.DatosSolicitudes.Add(solicitud);
             Console.WriteLine("\nEXITO La solicitud fue recibida correctamente.");
             Console.WriteLine("El cliente sera contactado posteriormente para obtener mas informacion.");

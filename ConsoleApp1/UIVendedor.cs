@@ -148,18 +148,52 @@ public static class UIVendedor
 
     private static void VerHistorialVentas()
     {
-        Console.WriteLine("\n--- HISTORIAL DE COMPRAS Y FACTURAS ---");
-        if (Registro.Facturas.Count == 0)
+        Console.Clear();
+        Console.WriteLine("--- HISTORIAL DE VENTAS ---");
+        Console.WriteLine("1. Ver facturas registradas");
+        Console.WriteLine("2. Reporte del inventario de segunda");
+        string opcion = Console.ReadLine();
+
+        if (opcion == "1")
         {
-            Console.WriteLine("No se han generado ventas todavía.");
-        }
-        else
-        {
-            foreach (var factura in Registro.Facturas)
+
+            if (Registro.Facturas.Count == 0)
+            {
+                Console.WriteLine("No se han generado ventas todavía.");
+                return;
+            }
+
+            Action<string> mostrarFactura = factura =>
             {
                 Console.WriteLine(factura);
                 Console.WriteLine("---------------------------------------");
-            }
+            };
+
+            ConsultaVehiculos.EjecutarSobreCada(Registro.Facturas, mostrarFactura);
+        }
+        else if (opcion == "2")
+        {
+
+            var aprobados = ConsultaVehiculos.FiltrarSegunda(
+                Registro.InventarioSegunda,
+                vehiculo => vehiculo.EstaAprobado
+            );
+
+
+            var resumenes = ConsultaVehiculos.ObtenerResumenes(
+                aprobados,
+                vehiculo => $"{vehiculo.Marca} {vehiculo.Modelo} ({vehiculo.Año}) - {vehiculo.Precio:C} - KM: {vehiculo.Kilometraje}"
+            );
+
+
+            decimal totalInventario = ConsultaVehiculos.CalcularValorTotal(aprobados);
+
+            Console.WriteLine($"\n--- VEHICULOS APROBADOS EN CATALOGO: {aprobados.Count} ---");
+
+
+            ConsultaVehiculos.EjecutarSobreCada(resumenes, resumen => Console.WriteLine("  • " + resumen));
+
+            Console.WriteLine($"\n  VALOR TOTAL DEL INVENTARIO: {totalInventario:C}");
         }
     }
 
