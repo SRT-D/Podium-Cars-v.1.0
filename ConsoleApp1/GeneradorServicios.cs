@@ -4,7 +4,7 @@ using Castle.Core;
 using System;
 
 namespace ConsoleApp1;
-
+//Paradigma Orientado a Aspectos
 public static class GeneradorServicios
 {
 

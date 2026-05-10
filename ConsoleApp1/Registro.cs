@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1
-{
+{ //Programacion funcional Record
     public static class Registro
     {
 

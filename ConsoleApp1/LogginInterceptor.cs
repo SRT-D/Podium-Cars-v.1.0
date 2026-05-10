@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1;
-
+//programacion orientada a aspectos
 public class LoggingInterceptor : IInterceptor
 {
     public void Intercept(IInvocation invocation)
@@ -15,7 +15,7 @@ public class LoggingInterceptor : IInterceptor
     }
 }
 
-
+//programacion orientada a aspectos
 public class ErrorInterceptor : IInterceptor
 {
     public void Intercept(IInvocation invocation)

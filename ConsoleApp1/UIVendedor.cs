@@ -47,8 +47,8 @@ public static class UIVendedor
             }
         }
     }
-
-    private static IServicioAutenticacion _authService => GeneradorServicios.ObtenerServicioAutenticacion();
+    //Programacion orientada a aspectos
+    private static IServicioAutenticacion _authService = GeneradorServicios.ObtenerServicioAutenticacion();
 
     private static void Login()
     {
@@ -101,9 +101,11 @@ public static class UIVendedor
             case "3":
                 AdministrarImportados();
                 return false;
+            
             case "4":
                 SesionIniciada = false;
                 return false;
+            
             default:
                 return false;
         }
@@ -134,6 +136,14 @@ public static class UIVendedor
             {
                 pendientes[i].EstaAprobado = true;
                 Console.WriteLine("Vehiculo aprobado y movido al catalogo de clientes.");
+
+                //Utilizacion evento #1
+                GestorNegocio.Instancia.NotificarVehiculoAprobado(
+                    pendientes[i].Marca,
+                    pendientes[i].Modelo,
+                    pendientes[i].Año,
+                    pendientes[i].Precio
+                );
             }
             else
             {

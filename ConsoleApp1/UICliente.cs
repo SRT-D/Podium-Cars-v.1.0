@@ -131,6 +131,15 @@ public static class UICliente
 
             Registro.Facturas.Add(facturaDetalle);
             EliminarVehiculo(vehiculoSeleccionado);
+
+            //Utilizacion evento #2
+            GestorNegocio.Instancia.NotificarVentaRealizada(
+                vehiculoSeleccionado.Marca,
+                vehiculoSeleccionado.Modelo,
+                vehiculoSeleccionado.Precio,
+                "Efectivo"
+            );
+
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
@@ -173,6 +182,15 @@ public static class UICliente
                 string facturaCredito = $"Venta Credito: {vehiculoSeleccionado.Marca} - Inicial: {cuotaInicial:C} - {numeroCuotas} cuotas de {valorCuota:C}";
                 Registro.Facturas.Add(facturaCredito);
                 EliminarVehiculo(vehiculoSeleccionado);
+
+                //Utilizacion evento #2
+                GestorNegocio.Instancia.NotificarVentaRealizada(
+                    vehiculoSeleccionado.Marca,
+                    vehiculoSeleccionado.Modelo,
+                    vehiculoSeleccionado.Precio,
+                    "Crédito"
+                );
+
                 Console.WriteLine("\n¡Credito aprobado y compra exitosa!");
             }
         }

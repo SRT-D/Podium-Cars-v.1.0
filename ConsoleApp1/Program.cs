@@ -8,6 +8,22 @@ namespace ConsoleApp1
         {
             GeneradorServicios.ConfigurarContenedor();
 
+            //Suscriptor
+            GestorNegocio.Instancia.VehiculoAprobado += (sender, e) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n[EVENTO] Vehículo aprobado para venta: {e.Marca} {e.Modelo} ({e.Año}) - {e.Precio:C}");
+                Console.WriteLine($"[EVENTO] Aprobado el: {e.FechaAprobacion:dd/MM/yyyy HH:mm}");
+                Console.ResetColor();
+            };
+            //Suscriptor
+            GestorNegocio.Instancia.VentaRealizada += (sender, e) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"\n[EVENTO] Venta completada: {e.Marca} {e.Modelo}");
+                Console.WriteLine($"[EVENTO] Método: {e.MetodoPago} | Total: {e.PrecioFinal:C} | Fecha: {e.FechaVenta:dd/MM/yyyy HH:mm}");
+                Console.ResetColor();
+            };
 
             IServicioAutenticacion authService = GeneradorServicios.ObtenerServicioAutenticacion();
             bool ejecutar = true;
@@ -32,6 +48,8 @@ namespace ConsoleApp1
                 }
             }
         }
-
     }
+        
 }
+
+

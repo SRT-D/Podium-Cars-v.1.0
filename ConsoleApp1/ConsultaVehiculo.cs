@@ -6,15 +6,15 @@ namespace ConsoleApp1;
 
 public static class ConsultaVehiculos
 {
-
+    //Programacion funcional
     public static List<VehiculoSegunda> FiltrarSegunda(
         List<VehiculoSegunda> inventario,
-        Func<VehiculoSegunda, bool> criterio)
+        Func<VehiculoSegunda, bool> criterio) //Func<>
     {
         return inventario.Where(criterio).ToList();
     }
 
-
+    //Programacion funcional select
     public static List<string> ObtenerResumenes(
         List<VehiculoSegunda> vehiculos,
         Func<VehiculoSegunda, string> selector)
@@ -23,7 +23,7 @@ public static class ConsultaVehiculos
     }
 
 
-
+    //Programacion funcional aggregate
     public static decimal CalcularValorTotal(List<VehiculoSegunda> vehiculos)
     {
         if (!vehiculos.Any()) return 0m;
@@ -37,7 +37,7 @@ public static class ConsultaVehiculos
 
     public static void EjecutarSobreCada<T>(
         List<T> lista,
-        Action<T> accion)
+        Action<T> accion) //acction<>
     {
         foreach (var item in lista)
             accion(item);
